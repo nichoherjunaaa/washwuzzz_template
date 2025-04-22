@@ -64,6 +64,12 @@ nav a:hover {
     color: #2c7bfe;
 }
 
+nav a.active {
+    color: #2c7bfe;
+    font-weight: 600;
+}
+
+
 .mobile-menu-btn {
     display: none;
     background: none;
