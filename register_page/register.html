@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - WashWuzz Laundry</title>
-    <link rel="stylesheet" href="login_style.css">
+    <title>Register - WashWuzz Laundry</title>
+    <link rel="stylesheet" href="register_style.css">
 </head>
 <body>
     <!-- Header -->
@@ -22,44 +22,69 @@
                     <li><a href="../order_page/order.html">Pesanan</a></li>
                     <li><a href="../about_page/about.html">Tentang Kami</a></li>
                     <li><a href="../contact_page/contact.html">Kontak</a></li>
-                    <li><a href="./login.html" class="active">Masuk</a></li>
+                    <li><a href="../login_page/login.html">Masuk</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Login Section -->
-    <section class="login-section">
+    <!-- Register Section -->
+    <section class="register-section">
         <div class="container">
-            <div class="login-container">
-                <div class="login-header">
-                    <h1>Masuk</h1>
-                    <p>Selamat datang kembali di WashWuzz</p>
+            <div class="register-container">
+                <div class="register-header">
+                    <h1>Daftar</h1>
+                    <p>Bergabung dengan WashWuzz untuk pengalaman laundry lebih baik</p>
                 </div>
-                <form id="loginForm">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nama Depan</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nama Belakang</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Kata Sandi</label>
-                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required>
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon" required>
                     </div>
-                    <div class="form-footer">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Ingat saya</label>
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <textarea id="address" name="address" placeholder="Masukkan alamat lengkap Anda" rows="3" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Kata Sandi</label>
+                            <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required>
                         </div>
-                        <a href="#" class="forgot-password">Lupa kata sandi?</a>
+                        <div class="form-group">
+                            <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Masukkan ulang kata sandi" required>
+                        </div>
                     </div>
-                    <button type="submit" class="login-button">Masuk</button>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a></label>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Saya ingin menerima berita dan promosi terbaru dari WashWuzz</label>
+                    </div>
+                    <button type="submit" class="register-button">Buat Akun</button>
                 </form>
-                <div class="register-link">
-                    <p>Belum memiliki akun? <a href="../register_page/register.html">Daftar sekarang</a></p>
+                <div class="login-link">
+                    <p>Sudah memiliki akun? <a href="../login_page/login.html">Masuk sekarang</a></p>
                 </div>
                 <div class="social-login">
                     <div class="social-login-title">
-                        <span>Atau masuk dengan</span>
+                        <span>Atau daftar dengan</span>
                     </div>
                     <!-- <div class="social-buttons">
                         <button class="social-button">📘</button>
@@ -122,17 +147,38 @@
         });
 
         // Form submission handling
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', (e) => {
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('Kata sandi tidak cocok. Silakan coba lagi.');
+                return;
+            }
             
             // Here you would typically send this data to your server
-            console.log('Login attempt:', { email, password });
+            console.log('Registration attempt:', { 
+                firstName, 
+                lastName, 
+                email, 
+                phone, 
+                address,
+                password
+            });
             
             // For demo purposes, show success message
-            alert('Login berhasil!');
+            alert('Pendaftaran berhasil! Silakan masuk dengan akun baru Anda.');
+            window.location.href = '../login_page/login.html';
         });
     </script>
 </body>
